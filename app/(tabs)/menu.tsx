@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import useStore from '../zustand/zustand';
 interface MenuItem {
   id: number;
   name: string;
@@ -11,6 +12,8 @@ interface MenuItem {
 
 const MenuScreen: React.FC = () => {
   const navigation = useNavigation();
+  const { users, setUsers } = useStore();
+
 
   // Define your menu items
   const menuItems: MenuItem[] = [
@@ -43,6 +46,8 @@ const MenuScreen: React.FC = () => {
   // Function to clear/reset all selections
   const handleReset = () => {
     setQuantities({});
+    setUsers([])
+
   };
 
   // Function to proceed and navigate to InvoiceScreen
@@ -52,11 +57,15 @@ const MenuScreen: React.FC = () => {
       ...item,
       qty: quantities[item.id],
     }));
-    navigation.navigate('Invoice', { invoiceData });
+    console.log(invoiceData);
+    setUsers(invoiceData)
+
+    navigation.navigate('inv_auto', { invoiceData });
   };
 
   const renderItem = ({ item }: { item: MenuItem }) => (
     <View style={styles.menuItem}>
+      
       <Image source={{ uri: item.image }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <Text style={styles.name}>{item.name}</Text>
