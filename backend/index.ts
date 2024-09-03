@@ -37,13 +37,6 @@ db.once("open", function () {
   console.log("Connected to MongoDB");
 });
 
-const t = new Thing({
-  counter: 0,
-});
-t.save()
-  .then(() => console.log("Menu saved successfully!"))
-  .catch((err) => console.error("Error saving menu:", err));
-
 const menuData = {
   items: [
     {
@@ -80,11 +73,6 @@ const menuData = {
 };
 
 const menu = new Menu(menuData);
-
-menu
-  .save()
-  .then(() => console.log("Menu saved successfully!"))
-  .catch((err) => console.error("Error saving menu:", err));
 
 // Define a simple route
 app.get("/", (req, res) => {
