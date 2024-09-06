@@ -22,7 +22,7 @@ import ItemList from "./ItemList";
 import SamplePrint from "./SamplePrint";
 import { styles } from "./styles";
 
-const App = () => {
+export default function Page() {
   const [pairedDevices, setPairedDevices] = useState([]);
   const [foundDs, setFoundDs] = useState([]);
   const [bleOpend, setBleOpend] = useState(false);
@@ -362,6 +362,4 @@ const App = () => {
       <View style={{ height: 100 }} />
     </ScrollView>
   );
-};
-
-export default App;
+}
