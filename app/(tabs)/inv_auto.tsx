@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import { Card, Divider } from "react-native-paper";
 import useStore from "../zustand/zustand";
-import * as MediaLibrary from 'expo-media-library';
-import { captureRef } from 'react-native-view-shot';
+import * as MediaLibrary from "expo-media-library";
+import { captureRef } from "react-native-view-shot";
 
 const InvoiceScreen: React.FC = () => {
   const { users, updateUser, setCashier, cashier, setNumber } = useStore();
@@ -20,12 +20,10 @@ const InvoiceScreen: React.FC = () => {
   const invoiceRef = useRef(null);
   const imageRef = useRef(null);
 
-
-
   const onSaveImageAsync = async () => {
     const { status } = await MediaLibrary.requestPermissionsAsync();
-    if (status !== 'granted') {
-      alert('Permission to access media library is required!');
+    if (status !== "granted") {
+      alert("Permission to access media library is required!");
       return;
     }
 
@@ -34,7 +32,7 @@ const InvoiceScreen: React.FC = () => {
         const localUri = await captureRef(imageRef.current, {
           height: 440,
           quality: 1,
-          format: 'png', // specify format for better compatibility
+          format: "png", // specify format for better compatibility
         });
 
         await MediaLibrary.saveToLibraryAsync(localUri);
@@ -64,11 +62,11 @@ const InvoiceScreen: React.FC = () => {
 
   const totalQty = invoiceData.items.reduce(
     (total, item) => total + item.qty,
-    0
+    0,
   );
   const totalAmount = invoiceData.items.reduce(
     (total, item) => total + item.qty * item.rate,
-    0
+    0,
   );
 
   const currentDate = new Date();
@@ -88,7 +86,6 @@ const InvoiceScreen: React.FC = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("Success:", result);
         setNumber(result.Number);
       })
       .catch((error) => {
@@ -96,12 +93,10 @@ const InvoiceScreen: React.FC = () => {
       });
   };
 
-
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.head}>Review and Print Invoice</Text>
-      <View >
+      <View>
         <Card ref={imageRef}>
           <Card.Content>
             <Text style={styles.title}>{invoiceData.restaurantName}</Text>
@@ -128,13 +123,17 @@ const InvoiceScreen: React.FC = () => {
               <Text style={[styles.headerText, styles.itemColumn]}>Item</Text>
               <Text style={[styles.headerText, styles.qtyColumn]}>Qty</Text>
               <Text style={[styles.headerText, styles.rateColumn]}>Rate</Text>
-              <Text style={[styles.headerText, styles.amountColumn]}>Amount</Text>
+              <Text style={[styles.headerText, styles.amountColumn]}>
+                Amount
+              </Text>
             </View>
 
             {invoiceData.items.map((item, index) => (
               <View key={index} style={styles.row}>
                 <Text style={[styles.text, styles.noColumn]}>{index + 1}</Text>
-                <Text style={[styles.text, styles.itemColumn]}>{item.name}</Text>
+                <Text style={[styles.text, styles.itemColumn]}>
+                  {item.name}
+                </Text>
                 <Text style={[styles.text, styles.qtyColumn]}>{item.qty}</Text>
                 <Text style={[styles.text, styles.rateColumn]}>
                   {item.rate.toFixed(1)}
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   text: {
-    fontSize: 14,
+    fontSize: 20,
     marginVertical: 1,
     textAlign: "center",
   },
@@ -214,7 +213,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   headerText: {
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: "bold",
   },
   noColumn: {
