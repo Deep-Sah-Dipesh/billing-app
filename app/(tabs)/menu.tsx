@@ -127,7 +127,7 @@ const MenuScreen: React.FC = () => {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.menuContainer}
       />
-      <View style={[styles.footer, styles.button]}>
+      <View style={[styles.footer]}>
         <Button
           style={styles.button}
           title="Clear/Reset"
@@ -142,10 +142,8 @@ const MenuScreen: React.FC = () => {
 const styles = StyleSheet.create({
   button: {
     backgroundColor: "#007BFF", // Button background color
-    paddingVertical: 10, // Vertical padding
-    paddingHorizontal: 20, // Horizontal padding
-    borderRadius: 5, // Rounded corners
-    marginTop: 10, // Space above button
+    paddingVertical: 10,
+    fontSize: 20, // Vertical padding
   },
 
   container: {
@@ -184,7 +182,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-
+  button: {
+    backgroundColor: "#ddd",
+    padding: 12,
+    borderRadius: 5,
+    marginHorizontal: 5,
+  },
   buttonText: {
     fontSize: 29,
     fontWeight: "bold",

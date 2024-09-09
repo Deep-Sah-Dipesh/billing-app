@@ -58,7 +58,7 @@ export default function TabLayout() {
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
+                    name="user"
                     size={25}
                     color={Colors[colorScheme ?? "light"].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
@@ -79,14 +79,14 @@ export default function TabLayout() {
       <Tabs.Screen
         name="inv_auto"
         options={{
-          title: "invoice",
+          title: "Invoice",
           tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
-                    name="info-circle"
+                    name="user"
                     size={25}
                     color={Colors[colorScheme ?? "light"].text}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}

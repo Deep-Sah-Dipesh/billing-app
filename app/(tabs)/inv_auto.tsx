@@ -14,7 +14,8 @@ import * as MediaLibrary from "expo-media-library";
 import { captureRef } from "react-native-view-shot";
 
 const InvoiceScreen: React.FC = () => {
-  const { users, updateUser, setCashier, cashier, setNumber } = useStore();
+  const { users, updateUser, setCashier, cashier, setNumber, number } =
+    useStore();
   const [cashierName, setCashierName] = useState(cashier);
   const [name, setname] = useState("");
   const invoiceRef = useRef(null);
@@ -50,11 +51,11 @@ const InvoiceScreen: React.FC = () => {
   };
 
   const invoiceData = {
-    restaurantName: "Rasta Tea & Snacks",
+    restaurantName: "Chhinnamasta Snacks",
     address:
       "Near Aashiya Party Palace, Hanuman Nagar Road, Rajbiraj-11, Saptari",
-    contact: "9807115363, 7779978803",
-    billNo: "001",
+    contact: "980**********",
+    billNo: number,
     cashier: cashier,
     items: users,
     customer: name,
@@ -97,7 +98,7 @@ const InvoiceScreen: React.FC = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.head}>Review and Print Invoice</Text>
       <View>
-        <Card ref={imageRef}>
+        <Card ref={imageRef} style={styles.card}>
           <Card.Content>
             <Text style={styles.title}>{invoiceData.restaurantName}</Text>
             <Text style={styles.text}>{invoiceData.address}</Text>
@@ -113,7 +114,10 @@ const InvoiceScreen: React.FC = () => {
             <View style={styles.row}>
               <Text style={styles.text}>Bill No: {invoiceData.billNo}</Text>
               <Text style={styles.text}>Cashier: {invoiceData.cashier}</Text>
+            </View>
+            <View style={styles.row}>
               <Text style={styles.text}>Customer: {invoiceData.customer}</Text>
+              <Text style={styles.text}>Contact: {"             "}</Text>
             </View>
 
             <Divider style={styles.divider} />
@@ -123,22 +127,32 @@ const InvoiceScreen: React.FC = () => {
               <Text style={[styles.headerText, styles.itemColumn]}>Item</Text>
               <Text style={[styles.headerText, styles.qtyColumn]}>Qty</Text>
               <Text style={[styles.headerText, styles.rateColumn]}>Rate</Text>
-              <Text style={[styles.headerText, styles.amountColumn]}>
-                Amount
-              </Text>
+              <Text style={[styles.headerText, styles.amountColumn]}>Amt.</Text>
             </View>
 
             {invoiceData.items.map((item, index) => (
               <View key={index} style={styles.row}>
-                <Text style={[styles.text, styles.noColumn]}>{index + 1}</Text>
-                <Text style={[styles.text, styles.itemColumn]}>
+                <Text style={[styles.text, styles.noColumn, { fontSize: 27 }]}>
+                  {index + 1}
+                </Text>
+                <Text
+                  style={[styles.text, styles.itemColumn, , { fontSize: 27 }]}
+                >
                   {item.name}
                 </Text>
-                <Text style={[styles.text, styles.qtyColumn]}>{item.qty}</Text>
-                <Text style={[styles.text, styles.rateColumn]}>
+                <Text
+                  style={[styles.text, styles.qtyColumn, , { fontSize: 27 }]}
+                >
+                  {item.qty}
+                </Text>
+                <Text
+                  style={[styles.text, styles.rateColumn, , { fontSize: 27 }]}
+                >
                   {item.rate.toFixed(1)}
                 </Text>
-                <Text style={[styles.text, styles.amountColumn]}>
+                <Text
+                  style={[styles.text, styles.amountColumn, , { fontSize: 27 }]}
+                >
                   {(item.qty * item.rate).toFixed(1)}
                 </Text>
               </View>
@@ -147,10 +161,16 @@ const InvoiceScreen: React.FC = () => {
             <Divider style={styles.divider} />
 
             <View style={styles.row}>
-              <Text style={[styles.text, styles.noColumn]}>
+              <Text
+                style={[
+                  styles.text,
+                  styles.noColumn,
+                  { fontWeight: "bold", fontSize: 24 },
+                ]}
+              >
                 Total Qty: {totalQty}
               </Text>
-              <Text style={styles.text}>
+              <Text style={(styles.text, { fontWeight: "bold", fontSize: 24 })}>
                 Total Amount: ₹{totalAmount.toFixed(1)}
               </Text>
             </View>
@@ -174,8 +194,8 @@ const InvoiceScreen: React.FC = () => {
             setname(name);
           }}
         />
-        <Button title="Print" onPress={onSaveImageAsync} />
-        <Button title="Save as Image" onPress={onSaveImageAsync} />
+
+        <Button title="Save Bill" onPress={onSaveImageAsync} />
       </View>
     </ScrollView>
   );
@@ -186,25 +206,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   head: {
-    fontSize: 21,
+    fontSize: 34,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 10,
   },
   title: {
-    fontSize: 19,
+    fontSize: 28,
     fontWeight: "bold",
     textAlign: "center",
   },
   text: {
-    fontSize: 20,
+    fontSize: 24,
     marginVertical: 1,
     textAlign: "center",
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: 3,
+    marginVertical: 1,
   },
   rowHeader: {
     flexDirection: "row",
@@ -213,7 +233,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 26,
     fontWeight: "bold",
   },
   noColumn: {
@@ -242,6 +262,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginTop: 20,
     alignItems: "center",
+    display: "flex",
   },
   input: {
     width: "80%",
@@ -250,6 +271,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
+  },
+  card: {
+    backgroundColor: "white", // Add this line
   },
 });
 
