@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
+import { Link } from "expo-router";
 
 export default function Page() {
   return (
@@ -9,7 +16,9 @@ export default function Page() {
         <Text style={styles.subtitle}>Effortless Billing & Invoicing</Text>
       </View>
       <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Get Started</Text>
+        <Link href="/(tabs)/menu">
+          <Text style={styles.buttonText}>Get Started</Text>
+        </Link>
       </TouchableOpacity>
     </View>
   );
@@ -41,13 +50,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#4CAF50",
-    paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 25,
     borderRadius: 30,
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 30,
     fontWeight: "600",
   },
 });
