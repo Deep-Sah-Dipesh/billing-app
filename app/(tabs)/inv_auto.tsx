@@ -14,7 +14,7 @@ import * as MediaLibrary from "expo-media-library";
 import { captureRef } from "react-native-view-shot";
 
 const InvoiceScreen: React.FC = () => {
-  const { users, updateUser, setCashier, cashier, setNumber, number } =
+  const { user, updateUser, setCashier, cashier, setNumber, number } =
     useStore();
   const [cashierName, setCashierName] = useState(cashier);
   const [name, setname] = useState("");
