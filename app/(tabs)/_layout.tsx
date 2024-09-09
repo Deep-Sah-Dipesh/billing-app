@@ -49,8 +49,10 @@ export default function TabLayout() {
       <Tabs.Screen
         name="menu"
         options={{
-          title: "menu",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Menu",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="list-alt" color={color} />
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -70,6 +72,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="modal"
         options={{
+          title: "Info",
           tabBarButton: () => null, // This hides the tab from the UI
         }}
       />
@@ -77,7 +80,7 @@ export default function TabLayout() {
         name="inv_auto"
         options={{
           title: "invoice",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>

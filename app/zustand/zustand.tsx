@@ -5,8 +5,8 @@ const useStore = create((set) => ({
     { id: 1, name: "John Doe", age: 25 },
     { id: 2, name: "Jane Smith", age: 30 },
   ],
-  cashier: "Stake Holder",
-  number: 0,
+  cashier: "Sachin",
+  number: 1,
   setUsers: (newUsers) =>
     set(() => ({
       users: newUsers,

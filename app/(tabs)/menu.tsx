@@ -127,15 +127,27 @@ const MenuScreen: React.FC = () => {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.menuContainer}
       />
-      <View style={styles.footer}>
-        <Button title="Clear/Reset" onPress={handleReset} />
-        <Button title="Proceed" onPress={handleProceed} />
+      <View style={[styles.footer, styles.button]}>
+        <Button
+          style={styles.button}
+          title="Clear/Reset"
+          onPress={handleReset}
+        />
+        <Button style={styles.button} title="Proceed" onPress={handleProceed} />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: "#007BFF", // Button background color
+    paddingVertical: 10, // Vertical padding
+    paddingHorizontal: 20, // Horizontal padding
+    borderRadius: 5, // Rounded corners
+    marginTop: 10, // Space above button
+  },
+
   container: {
     flex: 1,
   },
@@ -159,11 +171,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   name: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: "bold",
   },
   rate: {
-    fontSize: 18,
+    fontSize: 26,
     color: "#887",
     fontWeight: "bold",
     marginTop: 4,
@@ -172,14 +184,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  button: {
-    backgroundColor: "#ddd",
-    padding: 8,
-    borderRadius: 5,
-    marginHorizontal: 5,
-  },
+
   buttonText: {
-    fontSize: 20,
+    fontSize: 29,
     fontWeight: "bold",
   },
   quantityText: {
