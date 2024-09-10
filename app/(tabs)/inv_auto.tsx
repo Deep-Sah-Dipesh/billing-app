@@ -57,7 +57,7 @@ const InvoiceScreen: React.FC = () => {
     contact: "980**********",
     billNo: number,
     cashier: cashier,
-    items: users,
+    items: user,
     customer: name,
   };
 
@@ -83,7 +83,7 @@ const InvoiceScreen: React.FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(users),
+      body: JSON.stringify(user),
     })
       .then((response) => response.json())
       .then((result) => {
